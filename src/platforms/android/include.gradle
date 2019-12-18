@@ -1,0 +1,39 @@
+android { // Commented out code not needed anymore in TNS 6
+    // dexOptions {
+    //     jumboMode true
+    // }
+    // compileSdkVersion 28             // NativeScript 6 is ok with min 22 
+    defaultConfig {
+        // multiDexEnabled true
+        // minSdkVersion 17              // NativeScript 6 is ok with min 17
+        // targetSdkVersion 28           //??
+    }
+    // packagingOptions {
+    //     exclude 'META-INF/DEPENDENCIES'
+    //     exclude 'META-INF/LICENSE'
+    //     exclude 'META-INF/LICENSE.txt'
+    //     exclude 'META-INF/license.txt'
+    //     exclude 'META-INF/NOTICE'
+    //     exclude 'META-INF/NOTICE.txt'
+    //     exclude 'META-INF/notice.txt'
+    //     exclude 'META-INF/ASL2.0'
+    // }
+}
+repositories {
+    maven {
+        url 'http://nexus.diamondfortress.com/nexus/content/repositories/releases/'
+    }
+    maven {
+        url 'http://nexus.diamondfortress.com/nexus/content/repositories/snapshots/'
+    }
+}
+dependencies {
+
+    compile(group:'com.dft.android', name:'onyx-camera', version:'5.1.8') {
+       transitive = true // this will import onyx-core and rest of the needed libs
+    }
+    
+    // For OnyxSetupActivity
+    compile 'com.google.android.gms:play-services-base:16.0.1'
+    compile 'com.android.support.constraint:constraint-layout:1.1.3'
+}

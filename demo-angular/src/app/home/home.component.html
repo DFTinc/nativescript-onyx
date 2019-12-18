@@ -1,0 +1,41 @@
+<GridLayout class="page">
+    <!-- Add your page content here -->
+    <GridLayout rows="150,auto,auto,auto,auto">
+        <StackLayout row="0" orientation="vertical" verticalAlignment="middle" horizontalAlignment="center" width="95%" >
+            <Image width="256" height="125" src="res://onyx" stretch="aspectFit" marginTop="25" marginBottom="25"></Image>
+            <Label #mainLabel textWrap="true" textAlignment="center"></Label>
+        </StackLayout>
+        <StackLayout row="1" orientation="horizontal" verticalAlignment="middle" horizontalAlignment="center">
+            <Image #rawImageView width="28%" android:height="150" [src]="rawImageAsset" stretch="aspectFit" margin="8"></Image>
+            <Image #processedImageView width="28%" android:height="150" [src]="processedImageAsset" stretch="aspectFit" margin="8"></Image>
+            <Image #enhancedImageView width="28%" android:height="150" [src]="enhancedImageAsset" stretch="aspectFit" margin="8"></Image>
+        </StackLayout>
+        <StackLayout row="2" #switchesStack orientation="vertical" horizontalAlignment="left" verticalAlignment="middle" width="100%" margin="4">
+                        
+
+            <StackLayout orientation="horizontal" horizontalAlignment="left" verticalAlignment="middle" width="100%" style="margin-bottom: 6">
+                <Switch #deadSwitch isEnabled="true" checked="false" style="margin-right: 6"></Switch>
+                <Label text="Decedent" textWrap="true" android:style="margin-top: 6"></Label> 
+            </StackLayout>   
+              
+            <StackLayout orientation="horizontal" horizontalAlignment="left" verticalAlignment="middle" width="100%" style="margin-bottom: 6">
+                <Switch #manualSwitch isEnabled="true" checked="true" style="margin-right: 6"></Switch> 
+                <Label text="Manual Capture" textWrap="true" android:style="margin-top: 6"></Label> 
+            </StackLayout> 
+            
+            <StackLayout orientation="horizontal" horizontalAlignment="left" verticalAlignment="middle" width="100%" style="margin-bottom: 0">
+                <Switch #flashlightSwitch isEnabled="true" checked="true" style="margin-right: 6"></Switch> 
+                <Label text="Use flashlight" textWrap="true" android:style="margin-top: 6"></Label> 
+            </StackLayout>
+            
+        </StackLayout>
+        <StackLayout row="3" orientation="horizontal" horizontalAlignment="center" width="100%" margin="12">    
+            <Button #pictureBtn (tap)="startOnyx($event)" text="Start Onyx"></Button>  
+        </StackLayout>
+        <StackLayout row="4" orientation="vertical" verticalAlignment="middle" horizontalAlignment="center">
+            <Label #confidenceLabel text=""></Label>
+            <Label #nfiLabel text=""></Label>
+            <Label #mlpLabel text=""></Label> 
+        </StackLayout>
+    </GridLayout>
+</GridLayout>

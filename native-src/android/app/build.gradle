@@ -1,0 +1,178 @@
+apply plugin: 'com.android.library'
+
+def libraryGroupId = 'com.dft.onyxjava'
+def libraryArtifactId = 'onyx'
+def libraryVersion = '5.1.8'
+
+project.archivesBaseName = "onyx-nativescript"
+project.version = libraryVersion
+
+android {
+    signingConfigs {
+        onyxjava {
+            keyAlias 'onyxjava'
+            keyPassword 'onyxjava'
+            storePassword 'onyxjava'
+            storeFile file('./onyxjava.jks')
+        }
+        release {
+            keyAlias 'onyxjava'
+            keyPassword 'onyxjava'
+            storePassword 'onyxjava'
+            storeFile file('./onyxplugin.jks')
+        }
+    }
+    // 2019.08 NEW Way then above
+    android.libraryVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "${archivesBaseName}-${version}.aar" // change AAR filename here
+        }
+    }
+
+    defaultPublishConfig "release"
+    buildToolsVersion "28.0.3"
+    compileSdkVersion 28
+    defaultConfig {
+        minSdkVersion 18
+        targetSdkVersion 28
+        versionCode 19
+        versionName libraryVersion
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath false
+            }
+        }
+        // 2019.08
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a"
+        }
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // 2019.08
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+     // 2019
+     packagingOptions {
+         exclude 'META-INF/DEPENDENCIES'
+         exclude 'META-INF/LICENSE'
+         exclude 'META-INF/LICENSE.txt'
+         exclude 'META-INF/license.txt'
+         exclude 'META-INF/NOTICE'
+         exclude 'META-INF/NOTICE.txt'
+         exclude 'META-INF/notice.txt'
+         exclude 'META-INF/ASL2.0'
+     }
+}
+
+dependencies {
+
+    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    api group: 'com.android.support', name: 'appcompat-v7', version: '28.0.0'
+    api 'com.android.support.constraint:constraint-layout:1.1.3'
+    api 'com.google.android.gms:play-services-base:16.0.1'
+    api ('com.dft.android:onyx-camera:5.1.8') {
+        transitive = true
+    }
+
+}
+
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
+buildscript {
+
+    repositories {
+        mavenCentral()
+        google()
+        jcenter()
+        maven {
+            url  "http://dl.bintray.com/vigidroid/maven"
+        }
+
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.0'
+        classpath 'me.vigi:fat-aar-plugin:0.2.8'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+    google()
+    maven {
+        url 'http://nexus.diamondfortress.com/nexus/content/repositories/releases/'
+    }
+
+    maven {
+        url 'http://nexus.diamondfortress.com/nexus/content/repositories/snapshots/'
+    }
+
+
+//    flatDir {
+//        dirs 'libs'
+//        //dirs project(':onyxcamera').file('libs')
+//    }
+
+}
+
+
+
+//compile (':app'){
+//    transitive=true
+//}
+
+//task copyLibs(type: Copy) {
+//    from configurations.compile
+//    into 'libs'
+//}
+
+//compile ('libs/onyx-camera:5.0.3.aar'){
+//    transitive=true
+//}
+
+//configurations {
+//    mypackage // create a new configuration, whose dependencies will be inspected
+//}
+//
+//dependencies {
+//    mypackage 'com.dft.android:onyx-camera:5.0.3' // set your dependency referenced by the mypackage configuration
+//    implementation fileTree(dir: "${buildDir.path}/resolvedArtifacts", include: ['*.jar','*.aar']) // this will compile the jar files within that folder, although the files are not there yet
+//}
+
+
+
+//artifactory {
+//    contextUrl = 'http://dev.dftapp.se:8081/artifactory'
+//    publish {
+//        repository {
+//            repoKey = 'libs-release-local'
+//
+//            username = artifactory_username
+//            password = artifactory_password
+//        }
+//        defaults {
+//            publications('aar')
+//            publishArtifacts = true
+//            properties = ['qa.level': 'basic', 'q.os': 'android', 'dev.team': 'core']
+//            publishPom = true
+//        }
+//    }
+//}

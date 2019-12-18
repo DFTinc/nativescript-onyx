@@ -1,0 +1,16 @@
+use_frameworks!
+use_modular_headers!
+platform :ios, '9.0'
+
+pod 'OnyxCamera', '~> 5.4.6'
+
+# In case Matt forgot to add modular headers
+# pod 'OnyxCamera', :path => '~/Projects/nativescript-onyx/src/platforms/ios/Frameworks/OnyxCamera/'
+
+# The old manual way
+# pod 'onyx-core', :path => '~/Projects/nativescript-onyx/src/platforms/ios/Frameworks/onyx-core/'
+# pod 'OnyxKit', :path => '~/Projects/nativescript-onyx/src/platforms/ios/Frameworks/OnyxKit/'
+# pod 'opencv2', :path => '~/Projects/nativescript-onyx/src/platforms/ios/Frameworks/opencv2/'
+
+# Modular hacks
+# pod 'OpenCV', '~> 2.4.8', :modular_headers => true

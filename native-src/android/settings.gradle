@@ -1,0 +1,3 @@
+include ':app'
+include ':onyx-camera'
+project(':onyx-camera').projectDir = new File('../onyx-camera-sdk/onyxcamera')
