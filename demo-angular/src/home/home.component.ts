@@ -1,13 +1,20 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
-import { Page } from "tns-core-modules/ui/page";
-import { Image } from "tns-core-modules/ui/image";
-import { Label } from "tns-core-modules/ui/label";
-import { Switch } from "tns-core-modules/ui/switch";
-import { Button } from "tns-core-modules/ui/button";
-import { isAndroid } from "tns-core-modules/ui/page/page";
-import { ImageSource } from "tns-core-modules/image-source";
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild
+} from '@angular/core';
+import {
+  Page,
+  Image,
+  Label,
+  Switch,
+  Button,
+  ImageSource,
+  Dialogs,
+  isIOS,
+} from '@nativescript/core';
 import { OnyxPlugin } from "nativescript-onyx";
-import * as dialogs from "tns-core-modules/ui/dialogs";
 
 const onyx_license: string = ""; // INSERT YOUR LICENSE KEY HERE
 
@@ -19,17 +26,17 @@ export class HomeComponent implements OnInit {
   
     // onyxResult: OnyxResult;
   
-    @ViewChild("mainLabel", {static: false}) mainLabel: ElementRef;
-    @ViewChild("pictureBtn", {static: false}) pictureBtn: ElementRef;
-    @ViewChild("rawImageView", {static: false}) rawImageView: ElementRef;
-    @ViewChild("processedImageView", {static: false}) processedImageView: ElementRef;
-    @ViewChild("enhancedImageView", {static: false}) enhancedImageView: ElementRef;
-    @ViewChild("confidenceLabel", {static: false}) confidenceLabel: ElementRef;
-    @ViewChild("nfiLabel", {static: false}) nfiLabel: ElementRef;
-    @ViewChild("mlpLabel", {static: false}) mlpLabel: ElementRef;
-    @ViewChild("flashlightSwitch", {static: false}) flashlightSwitch: ElementRef;
-    @ViewChild("manualSwitch", {static: false}) manualSwitch: ElementRef;
-    @ViewChild("deadSwitch", {static: false}) deadSwitch: ElementRef;
+    @ViewChild("mainLabel", {static: true}) mainLabel: ElementRef;
+    @ViewChild("pictureBtn", {static: true}) pictureBtn: ElementRef;
+    @ViewChild("rawImageView", {static: true}) rawImageView: ElementRef;
+    @ViewChild("processedImageView", {static: true}) processedImageView: ElementRef;
+    @ViewChild("enhancedImageView", {static: true}) enhancedImageView: ElementRef;
+    @ViewChild("confidenceLabel", {static: true}) confidenceLabel: ElementRef;
+    @ViewChild("nfiLabel", {static: true}) nfiLabel: ElementRef;
+    @ViewChild("mlpLabel", {static: true}) mlpLabel: ElementRef;
+    @ViewChild("flashlightSwitch", {static: true}) flashlightSwitch: ElementRef;
+    @ViewChild("manualSwitch", {static: true}) manualSwitch: ElementRef;
+    @ViewChild("deadSwitch", {static: true}) deadSwitch: ElementRef;
   
     constructor(private page: Page) {
   
@@ -79,7 +86,7 @@ export class HomeComponent implements OnInit {
         imageView.imageSource = imageSource;
       }
     }
-    startOnyx() {
+    startOnyx(args) {
   
       console.log("OnyxDemoApp: Starting Onyx..");
   
@@ -88,7 +95,7 @@ export class HomeComponent implements OnInit {
     
       // Start platform specific Onyx
       let onyx = new OnyxPlugin();
-      if (isAndroid) {
+      if (!isIOS) {
         this.startAndroidOnyx(onyx);
       } else {
         this.startiOSOnyx(onyx);
@@ -202,7 +209,7 @@ export class HomeComponent implements OnInit {
           },
           (onyxError: string): void => {
             console.log("OnyxDemoApp: onyx ERROR CALLBACK: " + onyxError);
-            dialogs.alert(onyxError);
+            Dialogs.alert(onyxError);
           },
           (
             rawImage: string,
