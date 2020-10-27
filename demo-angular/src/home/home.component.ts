@@ -16,7 +16,7 @@ import {
 } from '@nativescript/core';
 import { OnyxPlugin } from "nativescript-onyx";
 
-const onyx_license: string = ""; // INSERT YOUR LICENSE KEY HERE
+const onyx_license: string = "1673-9417-5759-1-2"; // INSERT YOUR LICENSE KEY HERE
 
 @Component({
     selector: "Home",

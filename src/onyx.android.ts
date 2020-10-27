@@ -1,5 +1,5 @@
-import * as app from "tns-core-modules/application";
-import { View } from "tns-core-modules/ui/core/view";
+import { Application, Frame, View } from '@nativescript/core';
+
 import { OnyxCommon, OnyxPluginCallback, OnyxPluginSuccessCallback, OnyxPluginErrorCallback } from "./onyx.common";
 
 declare var com: any;
@@ -42,7 +42,7 @@ export class OnyxPlugin extends OnyxCommon {
 
     // Java callback
     com.dft.onyxjava.OnyxPlugin.registerJavaCallbacks(
-      app.android.context,
+      Application.android.context,
       new com.dft.onyxjava.NativeScriptCallback(
       {
         success: (rawImage: string,
@@ -69,8 +69,8 @@ export class OnyxPlugin extends OnyxCommon {
     );
 
 
-    let context = app.android.context;
-    const activity = app.android.foregroundActivity || app.android.startActivity;
+    let context = Application.android.context;
+    const activity = Application.android.foregroundActivity || Application.android.startActivity;
 
     let onyx = new com.dft.onyxjava.OnyxPlugin();
     onyx.InitOnyx(context,

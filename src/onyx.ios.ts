@@ -1,6 +1,6 @@
-import * as fs from "tns-core-modules/file-system";
-import { knownFolders } from "tns-core-modules/file-system";
 import { OnyxCommon, OnyxPluginCallback, OnyxPluginSuccessCallback, OnyxPluginErrorCallback } from "./onyx.common";
+import { Application, Frame, knownFolders } from '@nativescript/core';
+import * as fs from '@nativescript/core';
 
 export class OnyxPlugin extends OnyxCommon {
 
@@ -225,9 +225,9 @@ export class OnyxPlugin extends OnyxCommon {
 
         console.log("OnyxPluginiOS: initializing.. " + this.getVersion());
 
-        let appWindow = UIApplication.sharedApplication.keyWindow;
-        let currentViewController = appWindow.rootViewController; // root?
-
+        const app = UIApplication.sharedApplication;
+        let currentViewController = app.keyWindow.rootViewController;
+       
         // Our own callback
         this.onyxPluginCallback = onyxPluginCallback;
         this.onyxPluginErrorCallback = onyxPluginErrorCallback;
@@ -432,6 +432,7 @@ export class OnyxPlugin extends OnyxCommon {
   }
 }
 
+@NativeClass()
 class OnyxViewControllerDelegateImpl extends NSObject implements OnyxViewControllerDelegate {
 
   public static ObjCProtocols = [];
