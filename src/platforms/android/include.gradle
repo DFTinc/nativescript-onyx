@@ -1,25 +1,22 @@
-android { // Commented out code not needed anymore in TNS 6
-    // dexOptions {
-    //     jumboMode true
-    // }
-    // compileSdkVersion 28             // NativeScript 6 is ok with min 22 
-    defaultConfig {
-        // multiDexEnabled true
-        // minSdkVersion 17              // NativeScript 6 is ok with min 17
-        // targetSdkVersion 28           //??
+android {
+    dexOptions {
+        jumboMode true
     }
-    // packagingOptions {
-    //     exclude 'META-INF/DEPENDENCIES'
-    //     exclude 'META-INF/LICENSE'
-    //     exclude 'META-INF/LICENSE.txt'
-    //     exclude 'META-INF/license.txt'
-    //     exclude 'META-INF/NOTICE'
-    //     exclude 'META-INF/NOTICE.txt'
-    //     exclude 'META-INF/notice.txt'
-    //     exclude 'META-INF/ASL2.0'
-    // }
+    compileSdkVersion 28
+    defaultConfig {
+        multiDexEnabled true
+        minSdkVersion 18
+        targetSdkVersion 28
+    }
+    
 }
 repositories {
+    mavenCentral()
+    google()
+    jcenter()
+    maven { 
+        url 'https://oss.sonatype.org/content/repositories/snapshots/' 
+    }
     maven {
         url 'http://nexus.diamondfortress.com/nexus/content/repositories/releases/'
     }
@@ -27,13 +24,25 @@ repositories {
         url 'http://nexus.diamondfortress.com/nexus/content/repositories/snapshots/'
     }
 }
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        // classpath 'com.android.tools.build:gradle:4.8.0'
+        // classpath 'com.google.gms:google-services:3.1.1'
+        // classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
+        // classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.0.1'
+    }
+}
 dependencies {
 
-    compile(group:'com.dft.android', name:'onyx-camera', version:'5.1.8') {
-       transitive = true // this will import onyx-core and rest of the needed libs
-    }
-    
-    // For OnyxSetupActivity
-    compile 'com.google.android.gms:play-services-base:16.0.1'
+    compile fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+    // compile(name:'onyx-nativescript-1.3.1', ext:'aar') {
+    //     transitive = false // 2019: changed to false
+    // }
+
+    compile 'com.google.android.gms:play-services-gcm:11.+'
     compile 'com.android.support.constraint:constraint-layout:1.1.3'
 }

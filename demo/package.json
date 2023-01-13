@@ -14,7 +14,7 @@
   "dependencies": {
     "nativescript-angular": "~8.2.0",
     "nativescript-camera": "^4.5.0",
-    "nativescript-onyx": "file:../src",
+    "nativescript-onyx3": "file:../src",
     "nativescript-theme-core": "~1.0.6",
     "reflect-metadata": "~0.1.12",
     "tns-core-modules": "~6.1.0",

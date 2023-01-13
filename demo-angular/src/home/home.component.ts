@@ -14,9 +14,10 @@ import {
   Dialogs,
   isIOS,
 } from '@nativescript/core';
-import { OnyxPlugin } from "nativescript-onyx";
 
-const onyx_license: string = "1673-9417-5759-1-2"; // INSERT YOUR LICENSE KEY HERE
+import { OnyxClass } from "nativescript-onyx3";
+
+const onyx_license: string = ""; // INSERT YOUR LICENSE KEY HERE
 
 @Component({
     selector: "Home",
@@ -94,138 +95,138 @@ export class HomeComponent implements OnInit {
       pictureBtn.isEnabled = false;
     
       // Start platform specific Onyx
-      let onyx = new OnyxPlugin();
-      if (!isIOS) {
-        this.startAndroidOnyx(onyx);
-      } else {
-        this.startiOSOnyx(onyx);
-      }
+      let onyx = new OnyxClass();
+      // if (!isIOS) {
+      //   this.startAndroidOnyx(onyx);
+      // } else {
+      //   this.startiOSOnyx(onyx);
+      // }
       pictureBtn.isEnabled = true;
   
     }
-    startAndroidOnyx(onyx: OnyxPlugin) {
+    // startAndroidOnyx(onyx: OnyxClass) {
   
-      let manualCapture = <Switch>this.manualSwitch.nativeElement;
-      let isManual: boolean = manualCapture.checked === true ? true : false;
-      let flashlightSwitch = <Switch>this.flashlightSwitch.nativeElement;
-      let isFlashlight: boolean = flashlightSwitch.checked === true ? true : false;
-      let deadSwitch = <Switch>this.deadSwitch.nativeElement;
-      let isDead: boolean = deadSwitch.checked === true ? true : false;
+    //   let manualCapture = <Switch>this.manualSwitch.nativeElement;
+    //   let isManual: boolean = manualCapture.checked === true ? true : false;
+    //   let flashlightSwitch = <Switch>this.flashlightSwitch.nativeElement;
+    //   let isFlashlight: boolean = flashlightSwitch.checked === true ? true : false;
+    //   let deadSwitch = <Switch>this.deadSwitch.nativeElement;
+    //   let isDead: boolean = deadSwitch.checked === true ? true : false;
   
-      onyx.initAndPresentAndroidOnyx(
-        onyx_license,       // Onyx license key
-        false,              // showOnyxConfig
-        true,               // returnRawImage
-        true,               // returnProcessedImage
-        true,               // returnEnhancedImage
-        false,              // returnWSQ
-        false,              // returnFingerprintTemplate
-        true,               // showLoadingSpinner
-        false,              // useOnyxLive
-        isFlashlight,       // useFlash
-        isManual,           // useManualCapture
-        isDead,             // isDeadFinger: FingerDetectMode DEAD_FINGER | LIVE_FINGER
-        false,              // shouldSegment
-        90,                 // imageRotation
-        "LEFT",             // reticleOrientation LEFT | RIGHT
-        1024.0,             // cropWidth (min 1024 [instead of 512 as told] otherwise image gets cropped)
-        600.0,              // cropHeight
-        1.0,                // cropFactor
-        1.0,                // reticleScale
-        "UPPER_THIRD",      // layoutPreference
-        (configuredOnyx: string): void => {
-          console.log("ONYX CONFIGURED: " + configuredOnyx);
-        },
-        (errorString: string): void => {
-          console.log("ONYX ERROR CALLBACK: ERROR: " + errorString);
-          let mainLabel = <Label>this.mainLabel.nativeElement;
-          mainLabel.text = errorString;
-        },
-        ( rawImage: string, // callback after fingerprint process is finished
-          enhancedImage: string,
-          processedImage: string,
-          wsqData: string,
-          templateData: string,
-          quality: number,
-          nfiScore: number,
-          mlpScore: number): void => {
-          this.processResult(rawImage, enhancedImage, processedImage, wsqData, templateData, quality, nfiScore, mlpScore);
-        },
-      );
-    }
-    startiOSOnyx(onyx: OnyxPlugin) {
+    //   onyx.initAndPresentAndroidOnyx(
+    //     onyx_license,       // Onyx license key
+    //     false,              // showOnyxConfig
+    //     true,               // returnRawImage
+    //     true,               // returnProcessedImage
+    //     true,               // returnEnhancedImage
+    //     false,              // returnWSQ
+    //     false,              // returnFingerprintTemplate
+    //     true,               // showLoadingSpinner
+    //     false,              // useOnyxLive
+    //     isFlashlight,       // useFlash
+    //     isManual,           // useManualCapture
+    //     isDead,             // isDeadFinger: FingerDetectMode DEAD_FINGER | LIVE_FINGER
+    //     false,              // shouldSegment
+    //     90,                 // imageRotation
+    //     "LEFT",             // reticleOrientation LEFT | RIGHT
+    //     1024.0,             // cropWidth (min 1024 [instead of 512 as told] otherwise image gets cropped)
+    //     600.0,              // cropHeight
+    //     1.0,                // cropFactor
+    //     1.0,                // reticleScale
+    //     "UPPER_THIRD",      // layoutPreference
+    //     (configuredOnyx: string): void => {
+    //       console.log("ONYX CONFIGURED: " + configuredOnyx);
+    //     },
+    //     (errorString: string): void => {
+    //       console.log("ONYX ERROR CALLBACK: ERROR: " + errorString);
+    //       let mainLabel = <Label>this.mainLabel.nativeElement;
+    //       mainLabel.text = errorString;
+    //     },
+    //     ( rawImage: string, // callback after fingerprint process is finished
+    //       enhancedImage: string,
+    //       processedImage: string,
+    //       wsqData: string,
+    //       templateData: string,
+    //       quality: number,
+    //       nfiScore: number,
+    //       mlpScore: number): void => {
+    //       this.processResult(rawImage, enhancedImage, processedImage, wsqData, templateData, quality, nfiScore, mlpScore);
+    //     },
+    //   );
+    // }
+    // startiOSOnyx(onyx: OnyxClass) {
   
-      let manualCapture = <Switch>this.manualSwitch.nativeElement;
-      let isManual: boolean = manualCapture.checked === true ? true : false;
-      let flashlightSwitch = <Switch>this.flashlightSwitch.nativeElement;
-      let isFlashlight: boolean = flashlightSwitch.checked === true ? true : false;
-      let deadSwitch = <Switch>this.deadSwitch.nativeElement;
-      let isDead: number = deadSwitch.checked === true ? 0 : 1;
-      let isRightHand = false;
+    //   let manualCapture = <Switch>this.manualSwitch.nativeElement;
+    //   let isManual: boolean = manualCapture.checked === true ? true : false;
+    //   let flashlightSwitch = <Switch>this.flashlightSwitch.nativeElement;
+    //   let isFlashlight: boolean = flashlightSwitch.checked === true ? true : false;
+    //   let deadSwitch = <Switch>this.deadSwitch.nativeElement;
+    //   let isDead: number = deadSwitch.checked === true ? 0 : 1;
+    //   let isRightHand = false;
   
-        onyx.initAndPresentiOSOnyx(
-          onyx_license,           // onyx license key
-          true,                   // showMatchScore
-          0.75,                   // LEDBrightness
-          true,                   // useAutoFocus
-          null,                   // scaleFactors: NSArray<typeof NSObject>,
-          false,                  // showDebug: boolean,
-          0.1,                    // focus meausurment requirement [0..1 default: 0.1]
-          1,                      // frameCount: number // ONYX CONFIG
-          null,                   // backgroundColorHexString: string
-          true,                   // returnRawFingerprintImage: boolean
-          false,                  // returnGrayRawFingerprintImage: boolean
-          true,                   // returnProcessedFingerprintImage: boolean
-          true,                   // returnEnhancedFingerprintImage: boolean
-          false,                  // returnBlackWhiteProcessedFingerprintImage: boolean
-          false,                  // returnFingerprintTemplate: boolean
-          false,                  // returnISOFingerprintTemplate
-          false,                  // returnWsq: boolean
-          false,                  // returnGrayRawWsq: boolean
-          false,                  // shouldSegment: boolean
-          90,                     // rotation: number
-          false,                  // wholeFingerCrop: boolean
-          CGSizeMake(1024, 600),  // DISABLED - FINGERPRINT_CAPTURE_FAILURE - cropSize: CGSize
-          1,                      // cropFactor: number
-          true,                   // showSpinner: boolean
-          0,                      // DONT CARE - layoutPreference: LayoutPreference 	UPPER_THIRD | FULL
-          isManual,               // useManualCapture: boolean
-          isDead,                 // fingerDetectMode: FingerDetectMode DEAD_FINGER | LIVE_FINGER
-          false,                  // showManualCaptureText: boolean
-          null,                   // manualCaptureText: string
-          false,                  // DONT CARE - useRemoteStorage: boolean
-          false,                  // useLiveness: boolean
-          isFlashlight,           // useFlash: boolean
-          isRightHand ? 1:0,      // reticleOrientation: ReticleOrientation, LEFT | RIGHT
-          0.0,                    // reticleAngle: number
-          1.0,                    // reticleScale: number
-          true,                   // DONT CARE - overrideReticleOrientation: boolean
-          null,                   // backButtonText: string
-          null,                   // infoText: string
-          null,                   // infoTextColorHexString: string
-          null,                   // base64ImageData: string
-          (configuredOnyx: string): void => {
-            console.log("OnyxDemoApp: onyx configured CALLBACK");
-          },
-          (onyxError: string): void => {
-            console.log("OnyxDemoApp: onyx ERROR CALLBACK: " + onyxError);
-            Dialogs.alert(onyxError);
-          },
-          (
-            rawImage: string,
-            enhancedImage: string,
-            processedImage: string,
-            wsqData: string,
-            templateData: string,
-            quality: number,
-            nfiScore: number,
-            mlpScore: number
-          ): void => {
-              this.processResult(rawImage, enhancedImage, processedImage, wsqData, templateData, quality, nfiScore, mlpScore);
-            }
-        );
+    //     onyx.initAndPresentiOSOnyx(
+    //       onyx_license,           // onyx license key
+    //       true,                   // showMatchScore
+    //       0.75,                   // LEDBrightness
+    //       true,                   // useAutoFocus
+    //       null,                   // scaleFactors: NSArray<typeof NSObject>,
+    //       false,                  // showDebug: boolean,
+    //       0.1,                    // focus meausurment requirement [0..1 default: 0.1]
+    //       1,                      // frameCount: number // ONYX CONFIG
+    //       null,                   // backgroundColorHexString: string
+    //       true,                   // returnRawFingerprintImage: boolean
+    //       false,                  // returnGrayRawFingerprintImage: boolean
+    //       true,                   // returnProcessedFingerprintImage: boolean
+    //       true,                   // returnEnhancedFingerprintImage: boolean
+    //       false,                  // returnBlackWhiteProcessedFingerprintImage: boolean
+    //       false,                  // returnFingerprintTemplate: boolean
+    //       false,                  // returnISOFingerprintTemplate
+    //       false,                  // returnWsq: boolean
+    //       false,                  // returnGrayRawWsq: boolean
+    //       false,                  // shouldSegment: boolean
+    //       90,                     // rotation: number
+    //       false,                  // wholeFingerCrop: boolean
+    //       CGSizeMake(1024, 600),  // DISABLED - FINGERPRINT_CAPTURE_FAILURE - cropSize: CGSize
+    //       1,                      // cropFactor: number
+    //       true,                   // showSpinner: boolean
+    //       0,                      // DONT CARE - layoutPreference: LayoutPreference 	UPPER_THIRD | FULL
+    //       isManual,               // useManualCapture: boolean
+    //       isDead,                 // fingerDetectMode: FingerDetectMode DEAD_FINGER | LIVE_FINGER
+    //       false,                  // showManualCaptureText: boolean
+    //       null,                   // manualCaptureText: string
+    //       false,                  // DONT CARE - useRemoteStorage: boolean
+    //       false,                  // useLiveness: boolean
+    //       isFlashlight,           // useFlash: boolean
+    //       isRightHand ? 1:0,      // reticleOrientation: ReticleOrientation, LEFT | RIGHT
+    //       0.0,                    // reticleAngle: number
+    //       1.0,                    // reticleScale: number
+    //       true,                   // DONT CARE - overrideReticleOrientation: boolean
+    //       null,                   // backButtonText: string
+    //       null,                   // infoText: string
+    //       null,                   // infoTextColorHexString: string
+    //       null,                   // base64ImageData: string
+    //       (configuredOnyx: string): void => {
+    //         console.log("OnyxDemoApp: onyx configured CALLBACK");
+    //       },
+    //       (onyxError: string): void => {
+    //         console.log("OnyxDemoApp: onyx ERROR CALLBACK: " + onyxError);
+    //         Dialogs.alert(onyxError);
+    //       },
+    //       (
+    //         rawImage: string,
+    //         enhancedImage: string,
+    //         processedImage: string,
+    //         wsqData: string,
+    //         templateData: string,
+    //         quality: number,
+    //         nfiScore: number,
+    //         mlpScore: number
+    //       ): void => {
+    //           this.processResult(rawImage, enhancedImage, processedImage, wsqData, templateData, quality, nfiScore, mlpScore);
+    //         }
+    //     );
 
       
-    }
+    // }
   }
   

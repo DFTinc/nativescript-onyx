@@ -44,7 +44,7 @@ NOTE: You have to manually copy it to /src/platforms/android/ after compile
 
 ## Gradle includes all the dependencies that Onyx needs
 ```
-/nativescript-onyx/src/platforms/android/include.gradle
+/nativescript-onyx3/src/platforms/android/include.gradle
 ```
 
 ## Updating Onyx Library

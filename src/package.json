@@ -1,15 +1,9 @@
 {
-	"name": "nativescript-onyx",
+	"name": "nativescript-onyx3",
 	"version": "2.0.0",
 	"description": "Onyx [Diamond Fortress Technologies] Plugin for NativeScript",
-	"main": "onyx",
+	"main": "index.d.ts",
 	"typings": "index.d.ts",
-	"nativescript": {
-		"platforms": {
-			"android": "6.0.0",
-			"ios": "6.0.1"
-		}
-	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/DFTinc/nativescript-onyx.git"
@@ -43,10 +37,10 @@
 		"email": "yzheleznov@diamondfortress.com"
 	},
 	"bugs": {
-		"url": "https://github.com/DFTinc/nativescript-onyx/issues"
+		"url": "https://github.com/DFTinc/nativescript-onyx3/issues"
 	},
 	"license": "Apache-2.0",
-	"homepage": "https://github.com/DFTinc/nativescript-onyx",
+	"homepage": "https://github.com/DFTinc/nativescript-onyx3",
 	"dependencies": {},
 	"devDependencies": {
 		"@nativescript/android": "7.0.1",

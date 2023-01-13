@@ -1,5 +1,0 @@
-ENABLE_BITCODE = NO
-OTHER_LDFLAGS = $(inherited) -ObjC -framework "AVFoundation" -framework "CoreMedia" -framework "AssetsLibrary"
-CLANG_CXX_LANGUAGE_STANDARD = gnu++11
-CLANG_CXX_LIBRARY = libc++
-IPHONEOS_DEPLOYMENT_TARGET = 9.0

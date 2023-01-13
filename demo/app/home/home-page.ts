@@ -2,7 +2,7 @@ import { HomeViewModel } from "./home-view-model";
 import { NavigatedData, Page } from "tns-core-modules/ui/page";
 import { EventData } from "data/observable"
 
-import { OnyxPlugin } from "nativescript-onyx";
+import { OnyxClass } from "nativescript-onyx3";
 import * as dialogs from "tns-core-modules/ui/dialogs";
 import { isAndroid } from "tns-core-modules/ui/page/page";
 import { Image } from "tns-core-modules/ui/image";
@@ -77,7 +77,7 @@ export function startOnyx(args) {
     pictureBtn.isEnabled = false;
 
     // Start platform specific Onyx
-    let onyx = new OnyxPlugin();
+    let onyx = new OnyxClass();
     if (isAndroid) {
         startAndroidOnyx(onyx);
     } else {
@@ -86,7 +86,7 @@ export function startOnyx(args) {
     pictureBtn.isEnabled = true;
 
 }
-export function startAndroidOnyx(onyx: OnyxPlugin) {
+export function startAndroidOnyx(onyx: OnyxClass) {
 
 let manualCapture: Switch = <Switch>page.getViewById("manualSwitch");
 let isManual: boolean = manualCapture.checked === true ? true : false;
@@ -136,7 +136,7 @@ onyx.initAndPresentAndroidOnyx(
         processResult(rawImage, enhancedImage, processedImage, wsqData, templateData, quality, nfiScore, mlpScore);
     });
 }
-export function startiOSOnyx(onyx: OnyxPlugin) {
+export function startiOSOnyx(onyx: OnyxClass) {
 
     let manualCapture: Switch = <Switch>page.getViewById("manualSwitch");
     let isManual: boolean = manualCapture.checked === true ? true : false;

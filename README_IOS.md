@@ -15,12 +15,12 @@ cd src && npm run tsc --debug  && cd ../demo && tns run ios --emulator --syncAll
 - lObjC flag and gnu++11 as standard c++ compiler
 
 # Installing plugin into your app (local plugin way)
-Put **nativescript-onyx** AND **Your NS app** project folders in one common folder. 
+Put **nativescript-onyx3** AND **Your NS app** project folders in one common folder. 
 Let's say in "~/Projects/" folder.
 
 Then run command:
 ```
-tns plugin add ~/Projects/nativescript-onyx/src/
+tns plugin add ~/Projects/nativescript-onyx3/src/
 ```
 
 # Camera permissions in info.plist:

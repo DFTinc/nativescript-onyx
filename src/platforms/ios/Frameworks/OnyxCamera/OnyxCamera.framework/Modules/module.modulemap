@@ -1,0 +1,15 @@
+framework module OnyxCamera {
+    header "CaptureMetrics.h"
+    header "NetworkReachability.h"
+    header "NetworkUtil.h"
+    header "NfiqMetrics.h"
+    header "Onyx.h"
+    header "OnyxConfiguration.h"
+    header "OnyxConfigurationBuilder.h"
+    header "OnyxEnums.h"
+    header "OnyxError.h"
+    header "OnyxMatch.h"
+    header "OnyxResult.h"
+    header "OnyxViewController.h"
+    header "ProcessedFingerprint.h"
+}

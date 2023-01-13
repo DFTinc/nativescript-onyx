@@ -16,7 +16,7 @@
     "@nativescript/core": "~7.0.0",
     "@nativescript/imagepicker": "^1.0.0",
     "@nativescript/theme": "^3.0.0",
-    "nativescript-onyx": "file:../src",
+    "@nativescript-onyx3": "file:../src",
     "reflect-metadata": "~0.1.12",
     "rxjs": "^6.6.0",
     "zone.js": "~0.10.3"

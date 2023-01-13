@@ -39,17 +39,17 @@ cd demo-angular && tns plugin add '../src'
 ```
 
 # Installing plugin into your app (local plugin way).
-Put **nativescript-onyx** AND **Your NS app** project folders in one common folder. 
+Put **nativescript-onyx3** AND **Your NS app** project folders in one common folder. 
 Let's say in "~/Projects/" folder.
 
 Then run command:
 ```
-tns plugin add ~/Projects/nativescript-onyx/src/
+tns plugin add ~/Projects/nativescript-onyx3/src/
 ```
 
 # Removing plugin from app (for reinstalling)
 ```
-tns plugin remove nativescript-onyx
+tns plugin remove nativescript-onyx3
 tns plugin add ../src
 ```
 

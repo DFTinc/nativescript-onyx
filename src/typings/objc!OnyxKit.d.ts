@@ -248,8 +248,8 @@ declare class ProcessedFingerprint extends NSObject {
 // OnyxViewController.h
 interface OnyxDelegate extends NSObjectProtocol {
 
-	OnyxSuccessCallback(controller: OnyxViewController, data: NSData): void;
-	OnyxErrorCallback(controller: OnyxViewController, error: NSError): void;
+	"Onyx:successCallback:"(controller: OnyxViewController, data: NSData): void;
+	"Onyx:errorCallback:"(controller: OnyxViewController, error: NSError): void;
 	
 }
 declare var OnyxDelegate: {
@@ -260,14 +260,13 @@ declare var OnyxDelegate: {
 interface OnyxViewControllerDelegate extends NSObjectProtocol {
 
 	// OnyxViewController Delegate methods
-
-	OnyxDidOutputProcessedFingerprintFromSet(controller: OnyxViewController, fingerprint: ProcessedFingerprint, fingerprints: NSArray<typeof ProcessedFingerprint>): void;
+	"Onyx:didOutputProcessedFingerprint:fromSet:"(controller: OnyxViewController, fingerprint: ProcessedFingerprint, fingerprints: NSArray<typeof ProcessedFingerprint>): void;
 
 	/*!
 	* @return NSError
 	*/
-	OnyxErrorCallback(controller: OnyxViewController, error: NSError): void;
-	OnyxOnCancel(controller: OnyxViewController, error: NSError): void;
+	"Onyx:errorCallback:"(controller: OnyxViewController, error: NSError): void;
+	"Onyx:onCancel:"(controller: OnyxViewController, error: NSError): void;
 
 }
 declare var OnyxViewControllerDelegate: {
@@ -307,10 +306,10 @@ declare class Onyx extends NSObject implements OnyxViewControllerDelegate {
 	doSetup(onyxConfig: OnyxConfiguration): void;
 	capture(viewController: UIViewController): void;
 
-	// Protocols
-	OnyxDidOutputProcessedFingerprintFromSet(controller: OnyxViewController, fingerprint: ProcessedFingerprint, fingerprints: NSArray<typeof ProcessedFingerprint>): void;
-	OnyxErrorCallback(controller: OnyxViewController, error: NSError): void;
-	OnyxOnCancel(controller: OnyxViewController, error: NSError): void;
+	// protocol
+	"Onyx:didOutputProcessedFingerprint:fromSet:"(controller: OnyxViewController, fingerprint: ProcessedFingerprint, fingerprints: NSArray<typeof ProcessedFingerprint>): void;
+	"Onyx:errorCallback:"(controller: OnyxViewController, error: NSError): void;
+	"Onyx:onCancel:"(controller: OnyxViewController, error: NSError): void;
 
 }
 
